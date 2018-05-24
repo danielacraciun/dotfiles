@@ -1,0 +1,17 @@
+# custom aliases and functions
+# usage: source this file in ~/.xrc (where x is zsh/bash/whatever)
+
+alias zshcfg="nano ~/.zshrc"
+alias ohmyzsh="nano ~/.oh-my-zsh"
+alias srch='history | grep'
+alias ccat='pygmentize -g'  # need pip install pygments
+alias aliascfg="nano ~/.aliases"  # now you're thinking with portals!
+
+mkcd() { mkdir -p "$1" && cd "$1"; }  # create and cd into a dir
+debinst() { sudo dpkg -i "$1" && sudo apt-get install -f; }  # easy deb install
+gitback() { git reset --soft HEAD~"$1"; }  # this gets back x commits
+
+# 2 step commit fixing: grab (rewind to commit hash), shove (place modifs and
+force push the modifications)
+gitgrab() { git rebase -i HEAD~"$1"; }
+gitshove() { git commit --amend; git rebase --continue; git push --force; }
